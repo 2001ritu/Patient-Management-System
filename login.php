@@ -22,44 +22,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+ <html>
     <head>
-        <title> </title>
+        <titile> </titile>
            <link rel="stylesheet" type="text/css" href="style.css">
-
-    </head>
         <body>
-            <div class="loginbox">
+            <div class="loginbox" >
          
              <h1>Login </h1>
-               <form method="POST">
-                <p>Username</p>
-                <input type="text" name="name" placeholder="Enter Username">
+            <form>
+                <p>Usename</p>
+                <input type="text name" name="" placeholder="Enter Username">
                 <p>Password</p>
-                <input type="password" name="password"placeholder="Enter Password">
+                <input type="password" name=""placeholder="Enter Password">
                 <input type="Submit" name="" value="Login">
+                <br>
                 <a href="#">Forgot your password?</a><br>
-              <a href="#">Don't have an account?</a> </br>
+                <p>Don't have an account?</p> 
+                <a href="registration.php"> <input type="register" name="" value="Register" ></a>
+                
+              
             </form>
             </div>
            
         </body>
-<style>
+    <style>
 body{
-	background-color: blue
     margin: 0;
     padding: 0;
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
-    background-image: linear-gradient(pink,lightblue)
+    background: linear-gradient(pink,lightblue);
+  
+
 }
 .loginbox{
     width: 320px;
     height: 450px ;
-    background-color: gray;
-  
+    background:linear-gradient(lightblue,pink);
     color:#fff;
     top:50%;
     left:50%;
@@ -67,7 +68,7 @@ body{
     transform: translate(-50%,-50%);
     box-sizing:border-box;
     padding:70px,40px;
-    margin:0px;
+    color:black;
 }
 
 
@@ -77,20 +78,24 @@ h1{
     padding: 0 0 10px;
     text-align: center;
     font: size 22px;
+    color:brown;
 }
 loginbox p{
     margin:0;
-    padding: 0;
+    padding:0;
     font-weight:bold;
 
 
 }
 .loginbox input{
-    width:97%;
+    width:100%;
     height:40px;
     margin-bottom: 15px;
     font-size: 16px;
-    margin-left: 2px;
+    border: none;
+    border-bottom: 1px solid#000;
+    outline: none;
+
 }
 .loginbox input[type="text"],input[type="password"]
 {
@@ -107,9 +112,11 @@ loginbox p{
     border:none;
     outline:none;
     height: 40px;
+    width: 250px;
     background:white;
     font-size: 18px;
     border-radius: 20px;
+    margin-left: 30px;
     
 }
 .loginbox input[type="submit"]:hover
@@ -117,18 +124,37 @@ loginbox p{
     cursor:pointer;
     background:tomato ;
     color:#000;
-
+}
+.loginbox input[type="register"]
+{
+    border:none;
+    outline:none;
+    height: 40px;
+    width: 100px;
+    background:white;
+    font-size: 18px;
+    border-radius: 20px;
+    text-align: center;
+    
+    
+}
+.loginbox input[type="register"]:hover
+{
+    cursor:pointer;
+    background:tomato ;
+    color:#000;
 }
 .loginbox a{
     text-decoration:none;
     font-size: 15px;
     line-height: 20px;
-    color:white;
+    color:black;
 }
 .loginbox a:hover
 {
     opacity: 0.8;
-    color:#ffc107;
+    color:tomato;
 }
 </style>
+</head>
 </html>
