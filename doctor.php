@@ -10,6 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $phoneno = $_POST['phoneno'];
     $age = $_POST['age'];
     $specialization = $_POST['specialization'];
+    echo sha1($firstname.$name.$phoneno);
    
          if ($name == '' || $password == '' || $firstname=='' || $lastname=='' || $gender=='' ||  $phoneno == '' || $age =='' || $specialization ==''){
         $msg = "You must enter all fields";
