@@ -15,6 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
          if ($name == '' || $password == '' || $firstname=='' || $lastname=='' || $gender=='' ||  $phoneno == '' || $age =='' || $specialization ==''){
         $msg = "You must enter all fields";
     } else {
+             $id = sha1($firstname.$name.$phoneno);
         $sql = "INSERT INTO doctor values('$name', '$password','$firstname','$lastname','$gender','$phoneno','$age','$specialization')";
         $query = mysqli_query($link, $sql);
 
