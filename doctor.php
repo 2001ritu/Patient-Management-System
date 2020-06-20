@@ -1,6 +1,8 @@
 <?php include "dbConfig.php";
 session_start();
 $msg = "";
+$emailErr = '';
+$pwdErr = '';
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $password = $_POST['password'];
@@ -10,24 +12,52 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $phoneno = $_POST['phoneno'];
     $age = $_POST['age'];
     $specialization = $_POST['specialization'];
-    echo sha1($firstname.$name.$phoneno);
-   
-         if ($name == '' || $password == '' || $firstname=='' || $lastname=='' || $gender=='' ||  $phoneno == '' || $age =='' || $specialization ==''){
-        $msg = "You must enter all fields";
-    } else {
-             $id = sha1($firstname.$name.$phoneno);
-        $sql = "INSERT INTO doctor values('$id','$name', '$password','$firstname','$lastname','$gender','$phoneno','$age','$specialization')";
-        $query = mysqli_query($link, $sql);
+    $pwdpattern = '/^(?=.*[!@#$%^&*-_])(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,20}$/';
+           if ($name == '' || $password == '' || $firstname=='' || $lastname=='' || $gender=='' ||  $phoneno == '' || $age =='' || $specialization =='')
+        {
+         echo '
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <script>
+        alert("You must enter all fields");
+        </script>
+        </head>
+        <body>
 
-        if ($query === false) {
-            echo "Could not successfully run query ($sql) from DB: " . mysqli_error($link);
-            exit;
+        </body>
+        </html>';
         }
-    
-        echo "Registration completed successfully <br>";
+ else {
+        if(preg_match($pwdpattern, $password) && 
+                filter_var($name, FILTER_VALIDATE_EMAIL) ){
+           $id = sha1($firstname.$name.$phoneno);
+           $sql = "INSERT INTO doctor values('$id','$name', '$password','$firstname','$lastname','$gender','$phoneno','$age','$specialization')";
+           $query = mysqli_query($link, $sql);
+
+            if ($query === false) {
+            echo "Could not successfully run query ($sql) from DB: " . mysqli_error($link);
+            exit;}
         
+        else{
+                     echo '
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                    <script>
+                    alert("Registration completed successfully, You can Now Login to your account");
+                    </script>
+                    </head>
+                    <body>
+
+                    </body>
+                    </html>';}
+            } 
+            else {
+               echo "Atleast one special character ";
+                 }     
        
-        $msg = "Username and password do not match";
+        
     }
 }
 
